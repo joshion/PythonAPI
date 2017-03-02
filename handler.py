@@ -10,7 +10,7 @@ class MainHandler(tornado.web.RequestHandler):
     """
     Handler the router
     """
-    def __init__(self, application, request, **kwargs):
+    def __init__(self, application, request):
         super(MainHandler, self).__init__(application, request)
         self.col = self.application.col
 
@@ -31,7 +31,7 @@ class ApiHandler(tornado.web.RequestHandler):
         logging.debug("Enter Api router")
 
     def post(self, *args, **kwargs):
-        if self.col.insert_one({'id': args[0], "name":  args[1], "phone":  args[2]}):
+        if self.col.insert_one({'id': int(args[0]), "name":  args[1], "phone":  args[2]}):
             logging.debug("Insert %s %s %s into the database"%(args[0], args[1], args[2]))
             self.write("Insert successed")
         else:
