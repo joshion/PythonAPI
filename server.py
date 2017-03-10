@@ -29,5 +29,5 @@ class Application(tornado.web.Application):
 if __name__ == "__main__":
     APP = Application()
     if APP.listen(config.options.listen_port):
-        logging.info("listening on %s..."%(config.options.listen_port))
+        logging.info("listening on %s..." % config.options.listen_port)
     IOLoop.instance().start()
